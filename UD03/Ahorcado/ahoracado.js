@@ -215,6 +215,10 @@ function comprobarLetra(letra) {
     while (palabraCorrecta.indexOf(letra) !== -1) {
       arrayAciertos[palabraCorrecta.indexOf(letra)] = letra;
       palabraCorrecta = palabraCorrecta.replace(letra, "_");
+      clearInterval(elCrono);
+    laMevaData.setHours(0,0,10,0);
+    horaMostrar.innerHTML = "00:10";
+    elCrono = setInterval(crono,1000);
     }
     letrasCorrectas.innerText = mostrarLetras(arrayAciertos);
     if (arrayAciertos.indexOf("_") === -1) {

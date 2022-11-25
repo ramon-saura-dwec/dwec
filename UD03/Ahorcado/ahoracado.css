@@ -3,6 +3,7 @@ footer{
     bottom: 0;
 }
 
-aside{
-    height: 80vh;
-}
+.not-active { 
+    pointer-events: none; 
+    cursor: default; 
+} 

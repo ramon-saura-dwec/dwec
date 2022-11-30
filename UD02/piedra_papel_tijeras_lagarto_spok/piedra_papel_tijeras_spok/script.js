@@ -1,9 +1,22 @@
+let cadena = document.getElementById('paraula');
+let victoriasJugador = 0;
+let victoriasMaquina = 0;
+let jugador = document.getElementById('nom');
+
+
+
+document.getElementById('jugar').addEventListener('click', ()=>{
+    console.log(jugador.value);
+    console.log(cadena.value.toLowerCase().trim());
+})
+
 function buscaEleccion(respuesta) {
    let posibles = ['piedra','papel','tijeras','lagarto','spock'];
    let cadena = respuesta.split(',');
    let index = [];
    let min;
    let eleccio;
+
 
    for (let i = 0; i < cadena.length; i++) {
             let aux = cadena[i].trim();
@@ -31,7 +44,6 @@ function buscaEleccion(respuesta) {
     return eleccio;
 }
 
-let cadena = 'hola, piedra, que, papel, tal, tijeras';
  
 function randomChoise() {
     let posibles = ['piedra','papel','tijeras','lagarto','spock'];
@@ -43,6 +55,45 @@ function randomChoise() {
 function game(playerChoise, randomChoise){
     let resultado = false;
 
+    if(playerChoise == 'tijeras' && randomChoise == 'papel' || randomChoise == 'lagarto'){
+        victoriasJugador++
+    }
+
+    if(randomChoise == 'tijeras' && playerChoise == 'papel' || playerChoise == 'lagarto'){
+        victoriasMaquina++
+    }
+
+    if(playerChoise == 'piedra' && randomChoise == 'tijeras' || randomChoise == 'lagarto'){
+        victoriasJugador++
+    }
+
+    if(randomChoise == 'piedra' && playerChoise == 'tijeras' || playerChoise == 'lagarto'){
+        victoriasMaquina++
+    }
+
+    if(playerChoise == 'papel' && randomChoise == 'piedra' || randomChoise == 'spock'){
+        victoriasJugador++
+    }
+
+    if(randomChoise == 'papel' && playerChoise == 'piedra' || playerChoise == 'spock'){
+        victoriasMaquina++
+    }
+
+    if(playerChoise == 'lagarto' && randomChoise == 'papel' || randomChoise == 'spock'){
+        victoriasJugador++
+    }
+
+    if(randomChoise == 'lagarto' && playerChoise == 'papel' || playerChoise == 'spock'){
+        victoriasMaquina++
+    }
+
+    if(playerChoise == 'spock' && randomChoise == 'tijeras' || randomChoise == 'piedra'){
+        victoriasJugador++
+    }
+
+    if(randomChoise == 'spock' && playerChoise == 'tijeras' || playerChoise == 'piedra'){
+        victoriasMaquina++
+    }
     
 
     return resultado;

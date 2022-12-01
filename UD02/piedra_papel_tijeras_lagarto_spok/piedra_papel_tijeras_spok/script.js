@@ -101,4 +101,4 @@ function game(playerChoise, randomChoise){
 
 /* console.log(buscaEleccion(cadena)); */
 
-console.log(randomChoise());
+//console.log(randomChoise());

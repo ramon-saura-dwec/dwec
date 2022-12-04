@@ -4,8 +4,12 @@ let victoriasMaquina = 0;
 let jugador = document.getElementById('nom');
 let resultat = document.getElementById('resultat');
 let resposta = document.getElementById('feedback');
+let reset = document.getElementById('reset');
 
 
+reset.addEventListener('click',()=>{
+    location.reload();
+})
 
 
 document.getElementById('jugar').addEventListener('click', ()=>{
@@ -50,26 +54,45 @@ function game(eleccioJugador, eleccioMaquina){
         resultado = 'empatat';
     }
 
-    if(eleccioJugador === 'tijeras' && eleccioMaquina === 'papel' || eleccioMaquina === 'lagarto'){
+    if(eleccioJugador === 'tijeras' && eleccioMaquina === 'papel'){
         resultado = 'guanyat';
     }
 
-    if(eleccioJugador === 'spock' && eleccioMaquina === 'tijeras' || eleccioMaquina === 'piedra'){
+    if(eleccioJugador === 'tijeras' && eleccioMaquina === 'lagarto'){
         resultado = 'guanyat';
     }
 
-    if(eleccioJugador === 'lagarto' && eleccioMaquina === 'papael' || eleccioMaquina === 'spock'){
+    if(eleccioJugador === 'spock' && eleccioMaquina === 'tijeras'){
         resultado = 'guanyat';
     }
 
-    if(eleccioJugador === 'piedra' && eleccioMaquina === 'tijeras' || eleccioMaquina === 'lagarto'){
+    if(eleccioJugador === 'spock' && eleccioMaquina === 'piedra'){
         resultado = 'guanyat';
     }
 
-    if(eleccioJugador === 'papel' && eleccioMaquina === 'piedra' || eleccioMaquina === 'spock'){
+    if(eleccioJugador === 'lagarto' && eleccioMaquina === 'papel'){
         resultado = 'guanyat';
     }
 
+    if(eleccioJugador === 'lagarto' && eleccioMaquina === 'spock'){
+        resultado = 'guanyat';
+    }
+
+    if(eleccioJugador === 'piedra' && eleccioMaquina === 'tijeras'){
+        resultado = 'guanyat';
+    }
+
+    if(eleccioJugador === 'piedra' && eleccioMaquina === 'lagarto'){
+        resultado = 'guanyat';
+    }
+
+    if(eleccioJugador === 'papel' && eleccioMaquina === 'piedra'){
+        resultado = 'guanyat';
+    }
+
+    if(eleccioJugador === 'papel' && eleccioMaquina === 'spock'){
+        resultado = 'guanyat';
+    }
 
     if(resultado !== 'guanyat' && resultado !== 'empatat'){
         victoriasMaquina++;

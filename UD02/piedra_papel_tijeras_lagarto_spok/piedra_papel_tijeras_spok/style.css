@@ -45,3 +45,10 @@ main div input{
     margin-bottom: 2vh;
     width: 100%;
 }
+
+#reset{
+    padding: 1vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    width: 50%;
+}

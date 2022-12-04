@@ -2,49 +2,40 @@ let cadena = document.getElementById('paraula');
 let victoriasJugador = 0;
 let victoriasMaquina = 0;
 let jugador = document.getElementById('nom');
+let resultat = document.getElementById('resultat');
+let resposta = document.getElementById('feedback');
+
 
 
 
 document.getElementById('jugar').addEventListener('click', ()=>{
-    console.log(jugador.value);
-    console.log(cadena.value.toLowerCase().trim());
+    if(cadena.value.length > 0 && jugador.value.length > 0 && cercaEleccio(cadena.value).length > 0){
+        if(jugador.value.length > 0 ){
+            jugador.innerText = jugador.value;
+            jugador.disabled = true;
+        }
+        let eleccioJugador = cercaEleccio(cadena.value.toLowerCase().trim());
+        let eleccioMaquina = randomChoise();
+        resposta.innerHTML = `${jugador.value} has triat: ${eleccioJugador}. </br> El contrari ha triat: ${eleccioMaquina}. </br> Has ${game(eleccioJugador, eleccioMaquina)}!`;
+        resultat.innerHTML = `${victoriasJugador} - ${victoriasMaquina}`;
+    }else{
+        resposta.innerText = `Si no completes els camps no es por començar a jugar. \n A més una de les paraules claus ha de ser una de les del joc. `
+    }
 })
 
-function buscaEleccion(respuesta) {
-   let posibles = ['piedra','papel','tijeras','lagarto','spock'];
-   let cadena = respuesta.split(',');
-   let index = [];
-   let min;
-   let eleccio;
+function cercaEleccio(resposta) {
+    let possibles = ['piedra','papel','tijeras','lagarto','spock'];
+    let eleccio = '';
 
-
-   for (let i = 0; i < cadena.length; i++) {
-            let aux = cadena[i].trim();
-            index[i] = -1;
-            for (let j = 0; j < posibles.length; j++) {
-                let aux2 = posibles[j];
-                if (aux.indexOf(aux2) !== -1) {
-                    index[i] = i;
-                }
-            }         
+    for (let i = 0; i < possibles.length; i++) {
+        if(resposta.indexOf(possibles[i]) >= 0 || resposta.indexOf(possibles[i]) > eleccio){
+            eleccio =  possibles[i];
+        }
     }
-
-    min = -1;
-
-    for (let i = 0; i < index.length; i++) {
-       if(index[i] !== -1){
-        if(min > index[i] || min === -1){
-            min = index[i];
-        }    
-       }
-    }
-
-    eleccio = cadena[min].trim();
-
+    
     return eleccio;
 }
 
- 
 function randomChoise() {
     let posibles = ['piedra','papel','tijeras','lagarto','spock'];
     let numeroAleatorio = Math.floor(Math.random()*posibles.length);
@@ -52,53 +43,39 @@ function randomChoise() {
     return posibles[numeroAleatorio];
 }
 
-function game(playerChoise, randomChoise){
-    let resultado = false;
+function game(eleccioJugador, eleccioMaquina){
+    let resultado = 'perdut';
 
-    if(playerChoise == 'tijeras' && randomChoise == 'papel' || randomChoise == 'lagarto'){
-        victoriasJugador++
+    if(eleccioJugador === eleccioMaquina){
+        resultado = 'empatat';
     }
 
-    if(randomChoise == 'tijeras' && playerChoise == 'papel' || playerChoise == 'lagarto'){
-        victoriasMaquina++
+    if(eleccioJugador === 'tijeras' && eleccioMaquina === 'papel' || eleccioMaquina === 'lagarto'){
+        resultado = 'guanyat';
     }
 
-    if(playerChoise == 'piedra' && randomChoise == 'tijeras' || randomChoise == 'lagarto'){
-        victoriasJugador++
+    if(eleccioJugador === 'spock' && eleccioMaquina === 'tijeras' || eleccioMaquina === 'piedra'){
+        resultado = 'guanyat';
     }
 
-    if(randomChoise == 'piedra' && playerChoise == 'tijeras' || playerChoise == 'lagarto'){
-        victoriasMaquina++
+    if(eleccioJugador === 'lagarto' && eleccioMaquina === 'papael' || eleccioMaquina === 'spock'){
+        resultado = 'guanyat';
     }
 
-    if(playerChoise == 'papel' && randomChoise == 'piedra' || randomChoise == 'spock'){
-        victoriasJugador++
+    if(eleccioJugador === 'piedra' && eleccioMaquina === 'tijeras' || eleccioMaquina === 'lagarto'){
+        resultado = 'guanyat';
     }
 
-    if(randomChoise == 'papel' && playerChoise == 'piedra' || playerChoise == 'spock'){
-        victoriasMaquina++
+    if(eleccioJugador === 'papel' && eleccioMaquina === 'piedra' || eleccioMaquina === 'spock'){
+        resultado = 'guanyat';
     }
 
-    if(playerChoise == 'lagarto' && randomChoise == 'papel' || randomChoise == 'spock'){
-        victoriasJugador++
-    }
 
-    if(randomChoise == 'lagarto' && playerChoise == 'papel' || playerChoise == 'spock'){
-        victoriasMaquina++
-    }
-
-    if(playerChoise == 'spock' && randomChoise == 'tijeras' || randomChoise == 'piedra'){
-        victoriasJugador++
-    }
-
-    if(randomChoise == 'spock' && playerChoise == 'tijeras' || playerChoise == 'piedra'){
-        victoriasMaquina++
+    if(resultado !== 'guanyat' && resultado !== 'empatat'){
+        victoriasMaquina++;
+    }else if(resultado !== 'empatat'){
+        victoriasJugador++;
     }
     
-
     return resultado;
 }
-
-/* console.log(buscaEleccion(cadena)); */
-
-//console.log(randomChoise());

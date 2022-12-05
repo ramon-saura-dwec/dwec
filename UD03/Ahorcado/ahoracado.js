@@ -237,5 +237,9 @@ function comprobarLetra(letra) {
     counterFallos++;
     intentos.innerHTML = 'Fallos posibles: '+(MAX_FALLOS - counterFallos); 
     comprobarFallos();
+    clearInterval(elCrono);
+    laMevaData.setHours(0,0,10,0);
+    horaMostrar.innerHTML = "00:10";
+    elCrono = setInterval(crono,1000);
   }
 }

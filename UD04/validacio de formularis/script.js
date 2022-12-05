@@ -8,14 +8,17 @@ const password2 = document.getElementById('password2');
 function mostraError(input, missatge) {
     const formcontrol = input.parentElement;
     formcontrol.className = 'form-control error';
-    const label = formcontrol.querySelector('label');
     const small = formcontrol.querySelector('small');
-    small.innerText = label.innerText + ' ' + missatge;
+    small.innerText = missatge;
 }
 
 function mostreCorrecte(input) {
     const formcontrol = input.parentElement;
     formcontrol.className = 'form-control correcto';
+}
+
+function prenNomInput(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
 function esEmailValid(email) {
@@ -26,12 +29,66 @@ function esEmailValid(email) {
 function esObligatori(inputArray) {
     inputArray.forEach(input => {
         if(input.value.trim() === ''){
-            mostraError(input, 'és obligatori');
+            let missatge = `${prenNomInput(input)} és obligatori`
+            mostraError(input, missatge);
+            
         }else{
             mostreCorrecte(input);
         }
     });
 }
+
+function comprovaLongitud(inputArray){
+    let min;
+    let max;
+    let inputValue;
+
+    inputArray.forEach(input =>{
+        inputValue = input[0].value;
+        min = input[1];
+        max = input[2];
+
+        console.log(inputId, inputValue);
+
+        if(inputValue.length > 0){
+            if(inputValue.length < min){
+                let missatge = `${prenNomInput(input[0])} ha de tenir almenys ${min} caràcters`;
+                mostraError(input[0], missatge);
+            }else if(inputValue.length > max){
+                let missatge = `${prenNomInput(input[0])} ha de tenir màxim ${max} caràcters`;
+                mostraError(input[0], missatge);
+            }else{
+                mostreCorrecte(input[0]);
+            }
+        }
+    })
+    
+} 
+
+function comprovaContrasenyasSonIguals(input1, input2) {
+
+    if(input1.value === input2){
+        mostreCorrecte()
+    }else{
+        let missatge = `${prenNomInput(input2)} ha de ser igual que ${prenNomInput(input1)}`;
+        mostraError(input2, missatge);
+    }
+    
+}
+
+function esEmailValid(input) {
+    
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if(re.test(String(input.value.trim()))){
+        mostreCorrecte(input);    
+    }else{
+        let missatge = `${prenNomInput(input)} no te el format correcte`;
+        mostraError(input, missatge);
+    }
+    
+}
+
 //Eventos
 
 form.addEventListener('submit', function(e){
@@ -39,4 +96,9 @@ form.addEventListener('submit', function(e){
 
     esObligatori([nomUsusari, email, password, password2]);
 
+    comprovaLongitud([[nomUsusari, 3, 15],[password, 6, 25]]);
+
+    esEmailValid(email);
+
+    comprovaContrasenyasSonIguals(password, password2);
 })

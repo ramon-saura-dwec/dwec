@@ -1,0 +1,74 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    background-color: lightgreen;
+}
+
+main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+main::before{
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url(../img/camo_nou.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+}
+
+main section{
+    position: relative;
+    width: 100%;
+}
+
+#section-travesses{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#section-travesses article{
+    width: 100%;
+    text-align: center;
+}
+
+#section-travesses article h1{
+    margin-top: 5%;
+}
+
+#section-travesses aside{
+    padding: 5% 5% 0% 5%;
+    background-color: rgba(144, 238, 144, 0.3);
+}
+
+#section-travesses aside a{
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5%;
+    background-color: black;
+}
+
+main section h1{
+    color: lightgreen;
+}

@@ -16,6 +16,20 @@ header{
     background-color: lightgreen;
 }
 
+header nav{
+    width: 60%;
+}
+
+header nav a{
+    margin-right: 5%;
+    text-decoration: none;
+    color: black;
+}
+
+header nav a:hover{
+    color: #006414;
+}
+
 main{
     position: relative;
     width: 100%;
@@ -56,7 +70,9 @@ main section{
 }
 
 #section-travesses aside{
-    padding: 5% 5% 0% 5%;
+    display: flex;
+    justify-content: center;
+    width: 30%;
     background-color: rgba(144, 238, 144, 0.3);
 }
 
@@ -67,8 +83,17 @@ main section{
     border-radius: 5px;
     padding: 5%;
     background-color: black;
+    margin-top: 20%;
+    height: 20px;
 }
 
 main section h1{
     color: lightgreen;
+}
+
+footer{
+    background-color: lightgreen;
+    color: black;
+    padding: 3%;
+    text-align: center;
 }

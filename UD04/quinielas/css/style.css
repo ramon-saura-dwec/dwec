@@ -78,6 +78,7 @@ main section{
     border-radius: 15px;
     width: 35%;
     background-color: rgba(4, 56, 4, 0.5);
+    margin-bottom: 3%;
 }
 
 #tabla th{

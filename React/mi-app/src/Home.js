@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import BlogList from "./blog-list";
 
 function Home() {
-    const [blogs, setBlogs] = useState([
-        {title:'Nam en pel', body: 'bla bla bla bla', author: 'my self', id: 1},
-        {title:'Fot vesa tiiiiu', body: 'bla bla bla bla', author: 'xec', id: 2},
-        {title:'Fumar es un placer', body: 'bla bla bla bla', author: 'susy', id: 3}
-    ]);
+    const [blogs, setBlogs] = useState(null);
 
-    let blogId = [blogs.find(blog => blog.author === 'xec')];
+   /*  const [longitud, setLongitud] = useState('');
 
-    console.log(blogId);
+    const handleDeleteBlog = (id)=>{
+        setLongitud(blogs.length)
+        const newBlogs = blogs.filter((blog)=> blog.id !== id);
+        setBlogs(newBlogs);
+    } */
+
+    useEffect(()=>{
+       /*  if(blogs.length < longitud){
+            console.log('Blog deleted');
+        } */
+        fetch('http://localhost:8000/blogs')
+        .then((res) => {
+            console.log(res);
+            res.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
+    },[]);
 
     return(
         <div className="home">
-           <BlogList blogs={blogs}/>
-           <BlogList blogs={blogId}/>
-        </div>
+{/*            <BlogList blogs={blogs} title = 'Blog list' handleDeleteBlog = {handleDeleteBlog}/>
+ */}        </div>
     )
 }
 

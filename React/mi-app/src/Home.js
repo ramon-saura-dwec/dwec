@@ -3,34 +3,34 @@ import { useState } from "react";
 import BlogList from "./blog-list";
 
 function Home() {
+
     const [blogs, setBlogs] = useState(null);
-
-   /*  const [longitud, setLongitud] = useState('');
-
-    const handleDeleteBlog = (id)=>{
-        setLongitud(blogs.length)
-        const newBlogs = blogs.filter((blog)=> blog.id !== id);
-        setBlogs(newBlogs);
-    } */
+    const [downloading, setDownloading] =  useState(true);
 
     useEffect(()=>{
-       /*  if(blogs.length < longitud){
-            console.log('Blog deleted');
-        } */
-        fetch('http://localhost:8000/blogs')
-        .then((res) => {
-            console.log(res);
-            res.json();
-        })
-        .then((data) => {
-            console.log(data);
-        })
+        setTimeout(()=>{
+            fetch('http://localhost:8000/blogs')
+            .then((res) => {
+                if(!res.ok){
+                    throw Error('tot en contra');
+                }
+                return res.json();
+            })
+            .then((data) => {
+                setBlogs(data);
+                setDownloading(false);
+            })
+            .catch((error)=>{
+                console.log(error.message);
+            })
+        }, 1500)
     },[]);
 
     return(
         <div className="home">
-{/*            <BlogList blogs={blogs} title = 'Blog list' handleDeleteBlog = {handleDeleteBlog}/>
- */}        </div>
+            {downloading && <div>Downloading...</div>}
+            {blogs && <BlogList blogs={blogs} title='Blog list'/>}
+        </div>
     )
 }
 

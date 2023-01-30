@@ -1,34 +1,17 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import BlogList from "./blog-list";
+import React from "react";
+import BlogList from "./Blog-List";
+import useFetch from "./useFetch";
+
+/* http://localhost:8000/blogss */
 
 function Home() {
 
-    const [blogs, setBlogs] = useState(null);
-    const [downloading, setDownloading] =  useState(true);
-
-    useEffect(()=>{
-        setTimeout(()=>{
-            fetch('http://localhost:8000/blogs')
-            .then((res) => {
-                if(!res.ok){
-                    throw Error('tot en contra');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                setBlogs(data);
-                setDownloading(false);
-            })
-            .catch((error)=>{
-                console.log(error.message);
-            })
-        }, 1500)
-    },[]);
+    const {data: blogs, loading, error} = useFetch('http://localhost:8000/blogs');
 
     return(
         <div className="home">
-            {downloading && <div>Downloading...</div>}
+            {error && <div>{error}</div>}
+            {loading && <div>Loading...</div>}
             {blogs && <BlogList blogs={blogs} title='Blog list'/>}
         </div>
     )

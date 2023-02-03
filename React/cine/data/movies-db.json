@@ -1,0 +1,36 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Dune",
+      "synopsis": "En el Año 10191 el desértico planeta Arrakis, feudo de la familia Harkonnen desde hace generaciones, queda en manos de la Casa de los Atreides por orden del emperador. Con ello les cede la explotación de las reservas de especia, la materia prima más valiosa de la galaxia, necesaria para los viajes interestelares y también una droga capaz de amplificar la conciencia y extender la vida. El duque Leto (Oscar Isaac), la dama Jessica (Rebecca Ferguson) y el hijo de ambos, Paul Atreides (Timothée Chalamet), llegan a Arrakis con la esperanza de mantener el buen nombre de su casa y ser fieles al emperador, pero pronto se verán envueltos en una trama de traiciones y engaños que les llevará a cuestionar su confianza entre sus más allegados y a valorar a los lugareños, los Fremen, una estirpe de habitantes del desierto con una estrecha relación con la especia.",
+      "director": "Denis Villeneuve",
+      "actors": [
+        "Timothée Chalamet",
+        "Rebecca Ferguson",
+        "Oscar Isaac",
+        "Josh Brolin",
+        "Jason Momoa",
+        "Zendaya",
+        "Javier Bardem"
+      ],
+      "genre": ["Ciencia ficción", "Aventuras"],
+      "rate": 5,
+      "release": "2021-02-10",
+      "duration": 105,
+      "img": "https://pics.filmaffinity.com/dune-209834814-mmed.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Everything Everywhere All at Once",
+      "synopsis": "Cuando una ruptura interdimensional altera la realidad, Evelyn (Michelle Yeoh), una inmigrante china en Estados Unidos, se ve envuelta en una aventura salvaje en la que solo ella puede salvar el mundo. Perdida en los mundos infinitos del multiverso, esta heroína inesperada debe canalizar sus nuevos poderes para luchar contra los extraños y desconcertantes peligros del multiverso mientras el destino del mundo pende de un hilo.",
+      "director": "Dan Kwan",
+      "actors": ["Michelle Yeoh", "Jamie Lee Curtis"],
+      "genre": ["Ciencia ficción", "Comedia", "Acción", "Fantástico"],
+      "rate": 2,
+      "release": "2022-02-10",
+      "duration": 139,
+      "img": "https://pics.filmaffinity.com/everything_everywhere_all_at_once-245462960-mmed.jpg"
+    }
+  ]
+}

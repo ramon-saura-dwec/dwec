@@ -23,7 +23,7 @@ function useFetch(url){
         }, 1500)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[data])
 
     return {data, loading}
 }

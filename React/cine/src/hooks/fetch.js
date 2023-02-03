@@ -10,7 +10,7 @@ function Fetchi(){
             throw Error('La respuesta falla')
         }
     }).then((data)=>{
-        console.log(data.results)
+         return data.results
     }).catch((e)=>{
         console.log('todo mal' + e.message)
     });

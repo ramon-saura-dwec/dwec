@@ -77,3 +77,104 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+
+.movie-detail{
+    background-color: blanchedalmond;
+    display: flex;
+}
+
+.container-movie{
+    padding: 30px;
+    background-color: gray;
+    text-align: center;
+    width: 40%;
+}
+
+.container-movie img{
+    width: 400px;
+    margin: 30px 0;
+    box-shadow: 0 5px 5px;
+}
+
+.container-movie h2{
+    font-size: 40px;
+    color: goldenrod;
+    text-shadow: 2px 2px black;
+}
+
+.container-movie p {
+    font-size: 20px;
+    font-weight: bolder;
+    color: blanchedalmond;
+    margin: 20px 0;
+}
+
+.theatre{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    flex-direction: column;
+}
+
+.container-theatre{
+    text-align: center;
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+.seient{
+    background-color: #444451;
+    height: 25px;
+    width: 30px;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.seient.seleccionat{
+    background-color: green;
+}
+
+.seient.ocupat{
+    background-color: #fff;
+}
+
+.seient:nth-of-type(2){
+    margin-right: 18px;
+}
+
+.seient:nth-last-of-type(2){
+    margin-left: 18px;
+}
+
+.seient:not(.ocupat):hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.fila{
+     display: flex;
+}
+
+.pantalla{
+    background-color: #fff;
+    height: 120px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45deg);
+    box-shadow: 0 3px 10px rgba(37, 37, 24, 0.7);
+}
+
+.buy-tikets{
+   padding: 10px;
+   border-radius: 15px;
+   background-color: #444451;
+   border: 2px solid #444451;
+   color: blanchedalmond;
+}
+
+.buy-tikets:hover{
+   background-color: red;
+   border: 2px solid #444451;
+   color: blanchedalmond;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 function useFetch(url){
@@ -7,8 +7,7 @@ function useFetch(url){
     const [loading, setLoading] =  useState(true);
     const history = useHistory();
 
-    useEffect(()=>{
-
+    const getMovies = useCallback((history, url)=>{
         setTimeout(()=>{
             fetch(url)
             .then((response) => {
@@ -21,6 +20,11 @@ function useFetch(url){
                 setLoading(false);
             })
         }, 1500)
+    },[])
+
+    useEffect(()=>{
+
+        getMovies(history, url);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[data])

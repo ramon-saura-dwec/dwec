@@ -159,6 +159,10 @@ body{
     color: #fff;
 }
 
+.view-jornada p{
+    text-align: center;
+}
+
 .view-jornada button{
     margin: 30px;
     padding: 10px;
@@ -187,9 +191,17 @@ body{
 }
 
 .team{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100px;
+    width: 250px;
+}
+
+.team p{
+    position: absolute;
+    bottom: 0%;
 }
 
 .matches h3{

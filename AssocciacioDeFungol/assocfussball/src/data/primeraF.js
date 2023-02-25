@@ -1,51 +1,67 @@
 // eslint-disable-next-line no-unused-vars
 const primeraF = [
-    {"club": "FC Barcelona Fem",
+    {"id": 1,
+     "club": "FC Barcelona Fem",
      "src": "img/equipos_primera/barcelona.png"
     },
-    {"club": "Real Madrid Club de Futbol Fem",
+    {"id": 2,
+    "club": "Real Madrid Club de Futbol Fem",
      "src": "img/equipos_primera/real-madrid.png"
     },
-    {"club": "Levante Fem",
+    {"id": 3,
+    "club": "Levante Fem",
      "src": "img/equipos_primera/levante.png"
     },    
-    {"club": "Atlético de Madrid Fem",
+    {"id": 4,
+    "club": "Atlético de Madrid Fem",
      "src": "img/equipos_primera/atletico.png"
     },    
-    {"club": "Madrid Club Futbol Femenino",
+    {"id": 5,
+    "club": "Madrid Club Futbol Femenino",
      "src": "img/equipos_primera/madrid-c-f-fem.png"
     },    
-    {"club": "Valencia Fem",
+    {"id": 6,
+    "club": "Valencia Fem",
      "src": "img/equipos_primera/valencia.png"
     },    
-    {"club": "Sevilla Fem",
+    {"id": 7,
+    "club": "Sevilla Fem",
      "src": "img/equipos_primera/sevilla.png"
     },    
-    {"club": "Real Sociedad Fem",
+    {"id": 8,
+    "club": "Real Sociedad Fem",
      "src": "img/equipos_primera/real-sociedad.png"
     },    
-    {"club": "Granadilla Tenerife Fem",
+    {"id": 9,
+    "club": "Granadilla Tenerife Fem",
      "src": "img/equipos_primera/granadilla.png"
     },    
-    {"club": "Athletic Club Fem",
+    {"id": 10,
+    "club": "Athletic Club Fem",
      "src": "img/equipos_primera/athletic.png"
     },    
-    {"club":  "Alaves Gloriosas",
+    {"id": 11,
+    "club":  "Alaves Gloriosas",
      "src": "img/equipos_primera/alaves.png"
     },    
-    {"club": "Alhama CF",
+    {"id": 12,
+    "club": "Alhama CF",
      "src": "img/equipos_primera/alhamacf.png"
     },    
-    {"club": "Real Betis Fem",
+    {"id": 13,
+    "club": "Real Betis Fem",
      "src": "img/equipos_primera/betis.png"
     },    
-    {"club": "Villareal Fem",
+    {"id": 14,
+    "club": "Villareal Fem",
      "src": "img/equipos_primera/villarreal.png"
     },    
-    {"club": "Levante Las Planas",
+    {"id": 15,
+    "club": "Levante Las Planas",
      "src": "img/equipos_primera/lasplanas.png"
     },    
-    {"club": "Sporting de Huelva",
+    {"id": 16,
+    "club": "Sporting de Huelva",
      "src": "img/equipos_primera/sportingdehuelva.png"
     }    
 ]

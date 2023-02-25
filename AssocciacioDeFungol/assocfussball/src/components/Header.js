@@ -6,9 +6,9 @@ function Header() {
 
     return(
         <div className="header">
-            <div>
-                {primeraM.map((team)=> (
-                    <img width={50} height={50} src={team['src']} alt={"escudo " + team['club']} />
+           <div>
+                {primeraM.map((team, i)=> (
+                    <img width={50} height={50} key={i} src={team['src']} alt={"escudo " + team['club']} />
                     ))}
             </div>
             <div className="logo">
@@ -16,8 +16,8 @@ function Header() {
                 <img src='img/logo.png' alt="logo" />
             </div>
             <div>
-                {primeraF.map((team)=> (
-                    <img width={50} height={50} src={team['src']} alt={"escudo " + team['club']} />
+                {primeraF.map((team, y)=> (
+                    <img width={50} height={50} key={y} src={team['src']} alt={"escudo " + team['club']} />
                     ))}
             </div>
             <MenuNavigation></MenuNavigation>

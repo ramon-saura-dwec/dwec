@@ -1,63 +1,83 @@
 // eslint-disable-next-line no-unused-vars
 const primeraM = [
-    {"club": "FC Barcelona",
+    {"id": 1,
+    "club": "FC Barcelona",
      "src": "img/equipos_primera/barcelona.png"
     },
-    {"club": "Real Madrid",
+    {"id": 2,
+    "club": "Real Madrid",
      "src": "img/equipos_primera/real-madrid.png"
     },
-    {"club": "Real Sociedad",
+    {"id": 3,
+    "club": "Real Sociedad",
      "src": "img/equipos_primera/real-sociedad.png"
     },
-    {"club": "Atlético de Madrid",
+    {"id": 4,
+    "club": "Atlético de Madrid",
      "src": "img/equipos_primera/atletico.png"
     },
-    {"club": "Real Betis Balonpie",
+    {"id": 5,
+    "club": "Real Betis Balonpie",
      "src": "img/equipos_primera/betis.png"
     },
-    {"club": "Rayo Vallecano",
+    {"id": 6,
+    "club": "Rayo Vallecano",
      "src": "img/equipos_primera/rayo.png"
     },
-    {"club": "Athletic de Bilbao",
+    {"id": 7,
+    "club": "Athletic de Bilbao",
      "src": "img/equipos_primera/athletic.png"
     },      
-    {"club": "Villareal",
+    {"id": 8,
+    "club": "Villareal",
      "src": "img/equipos_primera/villarreal.png"
     },      
-    {"club": "Osasuna",
+    {"id": 9,
+    "club": "Osasuna",
      "src": "img/equipos_primera/osasuna.png"
     },         
-    {"club": "RCD Mallorca",
+    {"id": 10,
+    "club": "RCD Mallorca",
      "src": "img/equipos_primera/mallorca.png"
     },         
-    {"club": "Girona",
+    {"id": 11,
+    "club": "Girona",
      "src": "img/equipos_primera/girona.png"
     },         
-    {"club": "Sevilla",
+    {"id": 12,
+    "club": "Sevilla",
      "src": "img/equipos_primera/sevilla.png"
     },         
-    {"club": "Valladolid",
+    {"id": 13,
+    "club": "Valladolid",
      "src": "img/equipos_primera/valladolid.png"
     },            
-    {"club": "Valencia CF",
+    {"id": 14,
+    "club": "Valencia CF",
      "src": "img/equipos_primera/valencia.png"
     },            
-    {"club": "RCD Espanyol",
+    {"id": 15,
+    "club": "RCD Espanyol",
      "src": "img/equipos_primera/espanyol.png"
     },            
-    {"club": "Cádiz",
+    {"id": 16,
+    "club": "Cádiz",
      "src": "img/equipos_primera/cadiz.png"
     },            
-    {"club": "Almería",
+    {"id": 17,
+    "club": "Almería",
      "src": "img/equipos_primera/almeria.png"
     },            
-    {"club": "Celta de Vigo",
+    {"id": 18,
+    "club": "Celta de Vigo",
      "src": "img/equipos_primera/celta.png"
     },            
-    {"club": "Getafe",
+    {"id": 19,
+    "club": "Getafe",
      "src": "img/equipos_primera/getafe.png"
     },            
-    {"club": "Elche CF",
+    {"id": 20,
+    "club": "Elche CF",
      "src": "img/equipos_primera/elche.png"
     }           
 ]

@@ -20,9 +20,9 @@ function Home(){
                     <img src="/img/logo-red.png" width={200} alt="" />
                     <h2>Crea una Jornada</h2>
                 </Link>
-                <div className="home-section quiniela">
+                <Link to={'/quiniela'} className="home-section quiniela">
                     <img src="/img/quiniela.png" width={200} alt="" />
-                </div>
+                </Link>
                 <div className="home-section api">
                     <img src="/img/apilogo.png" width={200} alt="" />
                 </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Quiniela from "./components/Quiniela";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Jornada from "./components/Jornada";
 
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/" exact><Home></Home></Route>
           <Route path="/jornada"><Jornada></Jornada></Route>
+          <Route path="/quiniela"><Quiniela></Quiniela></Route>
           <Route path="*"><Home></Home></Route>
         </Switch>
     </BrowserRouter>

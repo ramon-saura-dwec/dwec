@@ -3,7 +3,8 @@ import { useState } from "react";
 function Quiniela(){
 
     const [quiniela, setQuiniela] = useState([]);
-    const [apuestas, setApuestas] = useState(Array(14).fill(""));
+    let apuestas = Array(14).fill("");
+    const [currentWeek, setCurrentWeek] = useState(null);
 
     function getWeeks(jornadas) {
 
@@ -19,22 +20,57 @@ function Quiniela(){
     let weeks = getWeeks((localStorage.length - 1)/2);
 
 
-    function getTargets(apuesta, row){
+    function getTargets(e, apuesta, row){
         
-        setApuestas(apuestas[row] = apuesta);
-        
-        console.log(apuesta);
-        console.log(row);
-        console.log(apuestas);
+        apuestas[row] = apuesta;
+
+        e.currentTarget.classList.toggle('selected')
         
     }
 
-   /*  function getGoals(){
+    function getGoals(){
         return Math.floor(Math.random()*6)
-    } */
+    }
+
+    function handleResults(){
+        /* let results = [];
+        let comparador = []; */
+        let auxMasc = JSON.parse(localStorage.getItem('jornadaM'+ currentWeek))
+        let auxFem = JSON.parse(localStorage.getItem('jornadaF'+ currentWeek))
+
+        console.log(apuestas.length)
+
+        for (let i = 0; i < apuestas.length; i++) {
+            let result = [];
+            result[0] = getGoals();
+            result[1] = getGoals();
+
+            if(i < 11){
+                auxMasc[i][0]['goals'] = result[0];
+                auxMasc[i][1]['goals'] = result[1];
+            }else{
+                auxFem[i][0]['goals'] = result[0]
+                auxFem[i][1]['goals'] = result[1]
+            }
+            /* results.push(result);
+            if(result[0] === result[1]){
+                comparador.push("X");
+            }else if(result[0] > result[1]){
+                comparador.push("1");
+            }else{
+                comparador.push("2");
+            } */
+        }
+        
+
+        console.log(auxMasc)
+        console.log(auxFem)
+        console.log(currentWeek)
+    }
 
     function handleQuiniela(item){
         setQuiniela([]);
+        apuestas.fill("")
         let auxMasc = JSON.parse(localStorage.getItem('jornadaM' + item))
         let auxFem = JSON.parse(localStorage.getItem('jornadaF' + item))
         auxMasc.map((y)=>{
@@ -47,6 +83,7 @@ function Quiniela(){
             // eslint-disable-next-line array-callback-return
             return
         })
+        setCurrentWeek(item);
     }
     
     return(
@@ -73,9 +110,9 @@ function Quiniela(){
                             while (i <= 13) {
                                 return <tr id={i} key={i}>
                                     <td className="quiniela-title">{item[0].club} vs {item[1].club}</td>
-                                    <td className="quiniela-result" onClick={(e)=>getTargets(e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>1</td>
-                                    <td className="quiniela-result" onClick={(e)=>getTargets(e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>X</td>
-                                    <td className="quiniela-result" onClick={(e)=>getTargets(e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>2</td>
+                                    <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>1</td>
+                                    <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>X</td>
+                                    <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>2</td>
                                     <td></td>
                                 </tr>
                             }
@@ -84,6 +121,9 @@ function Quiniela(){
                         })}
                     </tbody>
                 </table>
+            </div>
+            <div className="view-quiniela-button">
+                <button onClick={()=>handleResults()}>Resultados</button>
             </div>
         </div>
     )

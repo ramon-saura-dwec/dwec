@@ -211,6 +211,12 @@ body{
     border: 2px blue solid;
 }
 
+.view-quiniela-table thead tr{
+    background-color: #fff;
+    border: 5px solid red;
+    padding: 0%;
+}
+
 .view-quiniela-table tr{
     display: flex;
     padding: 1%;
@@ -222,7 +228,6 @@ body{
 
 .view-quiniela-table-h{
     color: black;
-    width: 9%;
     background-color: #fff;
     padding: 1%;
 }
@@ -243,9 +248,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3%;
     border: 1px solid blue;
     background-color: #fff;
+    padding: 0 5px;
     cursor: pointer;
 }
 
@@ -260,7 +265,7 @@ body{
 .quiniela-title{
     background-color: #fff;
     padding: 1%;
-    width: 62.5%;
+    width: 75%;
 }
 
 .view-jornada-container .division{

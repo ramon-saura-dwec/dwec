@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Quiniela(){
 
     const [quiniela, setQuiniela] = useState([]);
     let apuestas = Array(14).fill("");
     const [currentWeek, setCurrentWeek] = useState(null);
+    let auxQuiniela = quiniela;
+    let comparadorApuestas = Array(14).fill("");
+    let aciertosQuiniela = [];
+    let [aciertos, setAciertos] = useState([]);
+    let [resultados, setResultados] = useState(null);
+
+    useEffect(()=>{
+        if(localStorage.getItem('aciertosJornada' + currentWeek)){
+            setAciertos(JSON.parse(localStorage.getItem('aciertosJornada' + currentWeek)))
+        }
+        if(localStorage.getItem('resultadosJornada' + currentWeek)){
+            setResultados(JSON.parse(localStorage.getItem('resultadosJornada' + currentWeek)))
+        }
+    }, [currentWeek])
 
     function getWeeks(jornadas) {
 
@@ -33,39 +47,34 @@ function Quiniela(){
     }
 
     function handleResults(){
-        /* let results = [];
-        let comparador = []; */
-        let auxMasc = JSON.parse(localStorage.getItem('jornadaM'+ currentWeek))
-        let auxFem = JSON.parse(localStorage.getItem('jornadaF'+ currentWeek))
-
-        console.log(apuestas.length)
-
+        
         for (let i = 0; i < apuestas.length; i++) {
             let result = [];
             result[0] = getGoals();
             result[1] = getGoals();
 
-            if(i < 11){
-                auxMasc[i][0]['goals'] = result[0];
-                auxMasc[i][1]['goals'] = result[1];
-            }else{
-                auxFem[i][0]['goals'] = result[0]
-                auxFem[i][1]['goals'] = result[1]
-            }
-            /* results.push(result);
             if(result[0] === result[1]){
-                comparador.push("X");
+                comparadorApuestas[i] =  "X";
             }else if(result[0] > result[1]){
-                comparador.push("1");
+                comparadorApuestas[i] = "1";
             }else{
-                comparador.push("2");
-            } */
+                comparadorApuestas[i] = "2";
+            }
+            
+            auxQuiniela[i][0]['goals'] = result[0];
+            auxQuiniela[i][1]['goals'] = result[1];
         }
         
+        for (let y = 0; y < apuestas.length; y++) {
+            if(apuestas[y] === comparadorApuestas[y]){
+                aciertosQuiniela.push(1);
+            }else{
+                aciertosQuiniela.push(0);
+            }
+        }
 
-        console.log(auxMasc)
-        console.log(auxFem)
-        console.log(currentWeek)
+        localStorage.setItem('acietrosJornada' + currentWeek, JSON.stringify(aciertosQuiniela))
+        localStorage.setItem('resultadosJornada' + currentWeek, JSON.stringify(auxQuiniela))
     }
 
     function handleQuiniela(item){
@@ -78,8 +87,10 @@ function Quiniela(){
             // eslint-disable-next-line array-callback-return
             return
         })
-        auxFem.map((x)=>{
-            setQuiniela(quiniela => [...quiniela, x]);
+        auxFem.map((x, i)=>{
+            if(i < 4){
+                setQuiniela(quiniela => [...quiniela, x]);
+            }
             // eslint-disable-next-line array-callback-return
             return
         })
@@ -102,28 +113,32 @@ function Quiniela(){
                             <th className="view-quiniela-table-h">1</th>
                             <th className="view-quiniela-table-h">X</th>
                             <th className="view-quiniela-table-h">2</th>
-                            <th className="view-quiniela-table-h"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {quiniela && quiniela.map((item, i)=>{
-                            while (i <= 13) {
                                 return <tr id={i} key={i}>
-                                    <td className="quiniela-title">{item[0].club} vs {item[1].club}</td>
+                                    <td className="quiniela-title">{i + 1}. {item[0].club} vs {item[1].club}</td>
                                     <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>1</td>
                                     <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>X</td>
                                     <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>2</td>
-                                    <td></td>
+                                    {aciertos && aciertos.map((item, i)=>{
+                                        if(item === 1){
+                                            return <td><i class="bi bi-check-lg"></i></td>
+                                        }
+                                        // eslint-disable-next-line array-callback-return
+                                        return
+                                    })
+                                    }
                                 </tr>
-                            }
-                            // eslint-disable-next-line array-callback-return
-                            return
                         })}
                     </tbody>
                 </table>
             </div>
             <div className="view-quiniela-button">
-                <button onClick={()=>handleResults()}>Resultados</button>
+                {!resultados &&  
+                    <button onClick={()=>handleResults()}>Resultados</button>
+                }
             </div>
         </div>
     )

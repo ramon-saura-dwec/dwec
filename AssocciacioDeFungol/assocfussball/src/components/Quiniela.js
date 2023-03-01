@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 function Quiniela(){
 
     const [quiniela, setQuiniela] = useState([]);
-    let apuestas = Array(14).fill("");
+    let auxApuesta = Array(14).fill("");
+    let [apuestas, setApuestas] = useState([]);
     const [currentWeek, setCurrentWeek] = useState(null);
     let auxQuiniela = quiniela;
     let comparadorApuestas = Array(14).fill("");
     let aciertosQuiniela = [];
     let [aciertos, setAciertos] = useState([]);
-    let [resultados, setResultados] = useState(null);
+    let [resultados, setResultados] = useState([]);
+    const [showbutton, setShowbutton] = useState(false)
 
     useEffect(()=>{
         if(localStorage.getItem('aciertosJornada' + currentWeek)){
@@ -31,14 +33,23 @@ function Quiniela(){
         return arrJornadas
     }
 
-    let weeks = getWeeks((localStorage.length - 1)/2);
+    let weeks = getWeeks(Number(localStorage.getItem('weeknumber')) - 1);
 
 
     function getTargets(e, apuesta, row){
         
-        apuestas[row] = apuesta;
+        if(auxApuesta[row] === ''){
+            auxApuesta[row] = apuesta;
+        }else{
+            auxApuesta[row] = '';
+        }
 
         e.currentTarget.classList.toggle('selected')
+        
+        if(auxApuesta.indexOf('') === -1){
+            setApuestas(apuestas = auxApuesta);
+            setShowbutton(true);
+        }
         
     }
 
@@ -73,12 +84,15 @@ function Quiniela(){
             }
         }
 
+        setAciertos(aciertos = aciertosQuiniela);
         localStorage.setItem('acietrosJornada' + currentWeek, JSON.stringify(aciertosQuiniela))
         localStorage.setItem('resultadosJornada' + currentWeek, JSON.stringify(auxQuiniela))
     }
 
     function handleQuiniela(item){
         setQuiniela([]);
+        setResultados([]);
+        setShowbutton(false);
         apuestas.fill("")
         let auxMasc = JSON.parse(localStorage.getItem('jornadaM' + item))
         let auxFem = JSON.parse(localStorage.getItem('jornadaF' + item))
@@ -123,20 +137,15 @@ function Quiniela(){
                                     <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>X</td>
                                     <td className="quiniela-result" onClick={(e)=>getTargets(e, e.target.innerText, e.currentTarget.parentNode.getAttribute('id'))}>2</td>
                                     {aciertos && aciertos.map((item, i)=>{
-                                        if(item === 1){
-                                            return <td><i class="bi bi-check-lg"></i></td>
-                                        }
-                                        // eslint-disable-next-line array-callback-return
-                                        return
-                                    })
-                                    }
-                                </tr>
+                                        return console.log(item);
+                                    })}
+                               </tr>
                         })}
                     </tbody>
                 </table>
             </div>
             <div className="view-quiniela-button">
-                {!resultados &&  
+                {!resultados.length > 0 && showbutton &&  
                     <button onClick={()=>handleResults()}>Resultados</button>
                 }
             </div>

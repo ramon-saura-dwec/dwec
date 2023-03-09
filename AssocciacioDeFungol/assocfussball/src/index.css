@@ -201,61 +201,47 @@ body{
     padding: 1%;
     margin: 5% 10%;
     box-shadow: 0 0 5px red;
+    border: 3px solid red;
+    width: fit-content;
 }
 
-.view-quiniela-table{
-    background-color: #fff;
+.row-quiniela {
     display: flex;
-    flex-direction: column;
-    padding: 1%;
-    border: 2px blue solid;
+    align-items: center;
 }
 
-.view-quiniela-table thead tr{
+.row-quiniela td{
+    margin-top: 20px;
+}
+
+.equipos-quiniela{
+    width: 65vw;
+    color: blue !important;
+    border-bottom: 1px dashed blue;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}
+
+.apuesta button{
+    margin: 0 2px;
     background-color: #fff;
-    border: 5px solid red;
-    padding: 0%;
+    color: red;
 }
 
-.view-quiniela-table tr{
-    display: flex;
-    padding: 1%;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
+.apuesta button:hover{
+    border-color: blue;
     color: blue;
-    background-color: red;
 }
 
-.view-quiniela-table-h{
-    color: black;
-    background-color: #fff;
-    padding: 1%;
-}
-
-.view-quiniela-table-title{
-    background-color: #fff;
-    color: black;
-    width: 75%;
-    padding: 1%;
-}
 
 .view-jornada-container{
     display: flex;
     width: 100%;
 }
 
-.view-quiniela-table .quiniela-result{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid blue;
-    background-color: #fff;
-    padding: 0 5px;
-    cursor: pointer;
-}
-
 .selected{
     background-color: green !important;
+    color: #fff !important;
 }
 
 .view-quiniela-button{

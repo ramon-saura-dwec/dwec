@@ -1,4 +1,6 @@
 //import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
+import RowQuiniela from "./RowQuiniela";
 
 function Quiniela(){
 
@@ -9,6 +11,16 @@ function Quiniela(){
     //la quiniela no puede verse si no hay ninguna jornada clicada
     //generar apuesta aleatoria marcando las casillas correspondientes
     //memorizar apuestas por jornada
+
+    const [currentWeek, setCurrentWeek] = useState('');
+    const [quiniela, setQuiniela] = useState([]);
+    const [apuestas, setApuestas]  = useState([]);
+
+    useEffect(()=>{
+        if(apuestas.length > 0){
+            console.log(apuestas);
+        }
+    }, [apuestas])
 
     function getWeeks(jornadas) {
 
@@ -23,16 +35,69 @@ function Quiniela(){
 
     let weeks = getWeeks(Number(localStorage.getItem('weeknumber')) - 1);
 
-    function handleQuiniela(){
-        console.log('web toni');
+    const handleApuestas = (value) =>{
+            setApuestas(apuestas => [...apuestas, value]);
+    }
+
+    function handleQuiniela(item){
+        let auxMasc = JSON.parse(localStorage.getItem('jornadaM' + item))
+        let auxFem = JSON.parse(localStorage.getItem('jornadaF' + item))
+        auxMasc.map((y)=>{
+            setQuiniela(quiniela => [...quiniela, y]);
+            // eslint-disable-next-line array-callback-return
+            return
+        })
+        auxFem.map((x, i)=>{
+            if(i < 4){
+                setQuiniela(quiniela => [...quiniela, x]);
+            }
+            // eslint-disable-next-line array-callback-return
+            return
+        })
+        setCurrentWeek(item);
+    }
+
+    function handleResults(){
+        
+        localStorage.setItem('apuestasJornada' + currentWeek, JSON.stringify(apuestas))
+        setApuestas([])
     }
 
      return(
         <div className="view-quiniela">
             <div>
                 {weeks && weeks.map((item, i)=>{
-                 return <button type="submit" onClick={()=>handleQuiniela(item)} key={i}>Jornada {item}</button>
+                    let disabled = false;
+                    if(item === currentWeek){
+                        disabled = true;
+                    }
+                 return <button disabled={disabled} type="submit" onClick={()=>handleQuiniela(item)} key={i}>Jornada {item}</button>
                 })
+                }
+                {quiniela.length > 0 &&
+                <div className="view-quiniela-container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <td className="equipos-quiniela">Equipos</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>      
+                            {quiniela.map((item, i)=>{
+                                return <RowQuiniela key={i} index={i} week={currentWeek} equipos={item} onApuesta={handleApuestas}></RowQuiniela>
+                            }) }
+                        </tbody>
+                    </table>
+                </div>
+                }
+                {apuestas.length === 14 &&
+                    <div className="view-quiniela-button">
+                        <button onClick={()=>handleResults()}>Resultados</button>
+                    </div>
                 }
             </div>
         </div>

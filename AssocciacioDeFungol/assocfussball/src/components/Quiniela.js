@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 function Quiniela(){
 
-    const [quiniela, setQuiniela] = useState([]);
-    let auxApuesta = Array(14).fill("");
-    let [apuestas, setApuestas] = useState([]);
-    const [currentWeek, setCurrentWeek] = useState(null);
-    let auxQuiniela = quiniela;
-    let comparadorApuestas = Array(14).fill("");
-    let aciertosQuiniela = [];
-    let [aciertos, setAciertos] = useState([]);
-    let [resultados, setResultados] = useState([]);
-    const [showbutton, setShowbutton] = useState(false)
-
-    useEffect(()=>{
-        if(localStorage.getItem('aciertosJornada' + currentWeek)){
-            setAciertos(JSON.parse(localStorage.getItem('aciertosJornada' + currentWeek)))
-        }
-        if(localStorage.getItem('resultadosJornada' + currentWeek)){
-            setResultados(JSON.parse(localStorage.getItem('resultadosJornada' + currentWeek)))
-        }
-    }, [currentWeek])
+    //generar resultados de todos los partidos incluido los que no estan incluidos en la quiniela
+    //jugar con el estado en local storage para asignar resultado apuestas
+    //crear componente que sera la fila de la quinierla
+    //poder ver jornadas una vez creadas en ventana jornada
+    //la quiniela no puede verse si no hay ninguna jornada clicada
+    //generar apuesta aleatoria marcando las casillas correspondientes
+    //memorizar apuestas por jornada
 
     function getWeeks(jornadas) {
 
@@ -35,23 +23,37 @@ function Quiniela(){
 
     let weeks = getWeeks(Number(localStorage.getItem('weeknumber')) - 1);
 
-
-    function getTargets(e, apuesta, row){
-        
-        if(auxApuesta[row] === ''){
-            auxApuesta[row] = apuesta;
-        }else{
-            auxApuesta[row] = '';
-        }
-
-        e.currentTarget.classList.toggle('selected')
-        
-        if(auxApuesta.indexOf('') === -1){
-            setApuestas(apuestas = auxApuesta);
-            setShowbutton(true);
-        }
-        
+    function handleQuiniela(){
+        console.log('web toni');
     }
+
+     return(
+        <div className="view-quiniela">
+            <div>
+                {weeks && weeks.map((item, i)=>{
+                 return <button type="submit" onClick={()=>handleQuiniela(item)} key={i}>Jornada {item}</button>
+                })
+                }
+            </div>
+        </div>
+    )
+
+    /* useEffect(()=>{
+       
+    }, )
+
+    function getWeeks(jornadas) {
+
+        let arrJornadas = [];
+
+        for (let i = 0; i < jornadas; i++) {
+             arrJornadas.push(i + 1);            
+        }
+
+        return arrJornadas
+    }
+
+    let weeks = getWeeks(Number(localStorage.getItem('weeknumber')) - 1);
 
     function getGoals(){
         return Math.floor(Math.random()*6)
@@ -84,16 +86,9 @@ function Quiniela(){
             }
         }
 
-        setAciertos(aciertos = aciertosQuiniela);
-        localStorage.setItem('acietrosJornada' + currentWeek, JSON.stringify(aciertosQuiniela))
-        localStorage.setItem('resultadosJornada' + currentWeek, JSON.stringify(auxQuiniela))
     }
 
     function handleQuiniela(item){
-        setQuiniela([]);
-        setResultados([]);
-        setShowbutton(false);
-        apuestas.fill("")
         let auxMasc = JSON.parse(localStorage.getItem('jornadaM' + item))
         let auxFem = JSON.parse(localStorage.getItem('jornadaF' + item))
         auxMasc.map((y)=>{
@@ -115,7 +110,7 @@ function Quiniela(){
         <div className="view-quiniela">
             <div>
                 {weeks && weeks.map((item, i)=>{
-                 return <button onClick={()=>handleQuiniela(item)} key={i}>Jornada {item}</button>
+                 return <button type="submit" onClick={()=>handleQuiniela(item)} key={i}>Jornada {item}</button>
                 })
                 }
             </div>
@@ -127,6 +122,7 @@ function Quiniela(){
                             <th className="view-quiniela-table-h">1</th>
                             <th className="view-quiniela-table-h">X</th>
                             <th className="view-quiniela-table-h">2</th>
+                            {aciertos.length > 0 && <th className="view-quiniela-table-h"></th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -150,7 +146,7 @@ function Quiniela(){
                 }
             </div>
         </div>
-    )
+    ) */
 }
 
 export default Quiniela;

@@ -7,6 +7,7 @@ function MenuNavigation(){
                 <li><Link to={'/'}>Home</Link></li>
                 <li><Link to={'/jornada'}>Jornada</Link></li>
                 <li><Link to={'/quiniela'}>Quiniela</Link></li>
+                <li><Link to={'/api'}>API</Link></li>
             </ul>
         </div>
     );

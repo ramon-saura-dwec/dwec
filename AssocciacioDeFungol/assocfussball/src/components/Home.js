@@ -23,9 +23,9 @@ function Home(){
                 <Link to={'/quiniela'} className="home-section quiniela">
                     <img src="/img/quiniela.png" width={200} alt="" />
                 </Link>
-                <div className="home-section api">
+                <Link to={'/api'} className="home-section api">
                     <img src="/img/apilogo.png" width={200} alt="" />
-                </div>
+                </Link>
             </div>
         </div>
     )

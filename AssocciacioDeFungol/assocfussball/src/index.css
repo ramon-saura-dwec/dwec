@@ -285,3 +285,19 @@ body{
     font-size: 30px;
     margin: 0 20px;
 }
+
+.view-api{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.view-api h1{
+    margin-bottom: 20px;
+}
+
+.view-api p{
+    margin-bottom: 30px;
+}

@@ -18,9 +18,19 @@ function RowQuiniela({equipos, week, index, onApuesta}){
                 }
             }
             setRight(false)
+        }else{
+            setDisable(false)
+        }
+        if(localStorage.getItem('aciertosJornada' + week)){
+            let aciertos =  JSON.parse(localStorage.getItem('aciertosJornada' + week));
+            if(aciertos[index] === '1'){
+                setRight(true);
+            }
         }
         if(!right){
             ref.current.children[4].setAttribute('hidden', true)
+        }else{
+            ref.current.children[4].removeAttribute('hidden')
         }
     }, [selected, week, index,right])
 
